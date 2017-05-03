@@ -1,0 +1,29 @@
+fichier texte pour scenar (tourneboule)
+sec LAMPE1 val  [time]
+2
+3
+4
+5
+6
+
+sec POS1 pos(degrés)[-360;+360] [
+2
+3
+
+--------------
+
+écran tactile: 
+bouton "start"
+
+-------------
+
+accès reseau rPi : ftp (en option X11). point d'accès wifi
+
+------------
+
+sécurités : 
+-si potar hors de zone fonctionmt
+-si erreur=(potard-pos_actuelle)>erreur_max
+
+---------
+

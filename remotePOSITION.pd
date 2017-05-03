@@ -1,0 +1,16 @@
+#N canvas 18 75 396 265 10;
+#X obj 35 100 r CLIENT_MONITOR;
+#X obj 35 144 s \$0-current-rcv;
+#X obj 163 143 s CLIENT_REMOTE;
+#X obj 163 99 r \$0-remote-snd;
+#X obj 56 26 nbx 8 14 -360 360 0 0 \$0-remote-snd \$0-remote-rcv set
+-20 7 0 10 -4034 -1 -1 18 256;
+#X obj 56 41 nbx 8 10 -360 360 0 0 \$0-current-snd \$0-current-rcv
+current -45 5 0 10 -204786 -1 -1 18 256;
+#X obj 35 122 route POS\$1;
+#X obj 163 121 list prepend POS\$1;
+#X connect 0 0 6 0;
+#X connect 3 0 7 0;
+#X connect 6 0 1 0;
+#X connect 7 0 2 0;
+#X coords 0 -1 1 1 135 42 1 10 10;
