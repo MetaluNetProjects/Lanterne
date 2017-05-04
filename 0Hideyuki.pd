@@ -1,4 +1,4 @@
-#N canvas 472 181 697 486 10;
+#N canvas 43 382 697 486 10;
 #X declare -stdpath Fraise;
 #X declare -lib pof;
 #X obj 10 8 declare -stdpath Fraise;
@@ -47,7 +47,7 @@
 #X connect 18 0 11 0;
 #X connect 18 1 17 0;
 #X restore 280 257 pd SET_ZEROS;
-#N canvas 103 160 837 566 NETWORK/SEQUENCE 0;
+#N canvas 10 241 837 566 NETWORK/SEQUENCE 0;
 #X obj 147 260 s reSend;
 #X obj 121 96 f;
 #X obj 150 96 r reSend;
@@ -91,7 +91,7 @@
 #X obj 140 449 ggee/shell;
 #X msg 164 412 ro;
 #X msg 130 412 rw;
-#N canvas 10 75 591 317 test-rw 0;
+#N canvas 11 74 591 317 test-rw 0;
 #X msg 90 127 mount | grep /dev/mmcblk0p2 | cut -d' ' -f 6 | cut -c
 2-3;
 #X obj 90 181 route ro rw;
@@ -100,7 +100,7 @@
 #X obj 90 227 outlet;
 #X obj 90 98 metro 2000;
 #X obj 90 54 loadbang;
-#X obj 90 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 90 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 90 154 ggee/shell;
 #X connect 0 0 8 0;
@@ -109,7 +109,6 @@
 #X connect 2 0 4 0;
 #X connect 3 0 4 0;
 #X connect 5 0 0 0;
-#X connect 6 0 7 0;
 #X connect 7 0 5 0;
 #X connect 8 0 1 0;
 #X restore 483 206 pd test-rw;
@@ -130,7 +129,6 @@
 #X obj 502 278 list prepend monitor;
 #X obj 648 256 r seq-conduite-dump;
 #X msg 583 33 dump seq-conduite-dump;
-#X obj 648 278 list prepend seqdump;
 #X obj 231 259 r NET-nbclients;
 #X obj 231 281 > 0;
 #N canvas 628 147 450 300 fruits_present 0;
@@ -173,7 +171,8 @@
 #X obj 121 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 121 116 list prepend CLIENT fruitsOK;
-#X connect 1 0 47 0;
+#X obj 648 278 list prepend seq;
+#X connect 1 0 46 0;
 #X connect 2 0 1 0;
 #X connect 5 0 6 0;
 #X connect 6 0 33 0;
@@ -205,17 +204,17 @@
 #X connect 35 0 24 0;
 #X connect 36 0 37 0;
 #X connect 37 0 26 0;
-#X connect 38 0 40 0;
+#X connect 38 0 47 0;
 #X connect 39 0 29 0;
-#X connect 40 0 26 0;
-#X connect 41 0 42 0;
-#X connect 42 0 44 0;
-#X connect 43 0 46 0;
-#X connect 44 0 45 0;
-#X connect 45 0 21 0;
-#X connect 45 1 20 0;
-#X connect 46 0 1 0;
-#X connect 47 0 8 0;
+#X connect 40 0 41 0;
+#X connect 41 0 43 0;
+#X connect 42 0 45 0;
+#X connect 43 0 44 0;
+#X connect 44 0 21 0;
+#X connect 44 1 20 0;
+#X connect 45 0 1 0;
+#X connect 46 0 8 0;
+#X connect 47 0 26 0;
 #X restore 164 428 pd NETWORK/SEQUENCE;
 #X obj 164 368 seq/main conduite;
 #X msg 164 344 load \$1;
@@ -895,7 +894,7 @@ stopSwitch(ArretUrgence) 2 15 0 10 -143491 -143491 -1 0 1;
 -1 -1;
 #X msg 209 263 0;
 #X msg 310 282 1;
-#N canvas 502 131 625 480 pof_start 1;
+#N canvas 503 128 625 480 pof_start 0;
 #X obj 458 15 declare -lib pof;
 #X obj 119 84 pofhead;
 #X obj 119 106 t a a a;
@@ -1004,6 +1003,8 @@ stopSwitch(ArretUrgence) 2 15 0 10 -143491 -143491 -1 0 1;
 #X obj 9 407 LAMPE 6 2 53;
 #X obj 168 4 fruit/fruit 1 Lampe1 10 LampesFW;
 #X obj 168 53 fruit/fruit 1 Lampe2 11 LampesFW;
+#X obj 462 11 loadbang;
+#X msg 462 33 \; pd dsp 1;
 #X connect 3 0 11 0;
 #X connect 4 0 11 0;
 #X connect 7 0 6 0;
@@ -1020,4 +1021,5 @@ stopSwitch(ArretUrgence) 2 15 0 10 -143491 -143491 -1 0 1;
 #X connect 17 0 7 0;
 #X connect 18 0 21 0;
 #X connect 21 0 19 0;
+#X connect 31 0 32 0;
 #X coords 0 0 0.00203252 0.00161812 280 45 0;

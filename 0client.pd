@@ -1,4 +1,4 @@
-#N canvas 871 85 514 398 10;
+#N canvas 612 94 514 398 10;
 #X obj 3 9 cnv 15 180 390 empty empty SEQUENCE 100 12 0 14 -262130
 -66577 0;
 #X obj 12 13 bng 30 250 50 0 \$0-stopSeq-snd \$0-stopSeq-rcv STOP 1
@@ -6,7 +6,7 @@
 #X obj 11 49 seqb \$0 1;
 #X obj 188 10 cnv 15 300 300 empty empty Commande_live 20 12 0 14 -204800
 -66577 0;
-#N canvas 217 137 712 652 guts 0;
+#N canvas 467 213 939 652 guts 0;
 #X obj 356 306 s CLIENT-toserver;
 #X obj 134 124 r CLIENT-fromserver;
 #X obj 134 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -60,10 +60,10 @@
 #X obj 67 358 r CLIENT-fromserver;
 #X obj 451 197 r \$0-stopSeq-snd;
 #X msg 451 221 seq stop;
-#X obj 345 42 r \$0-allstop-snd;
-#X obj 345 67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 371 28 r \$0-allstop-snd;
+#X obj 371 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 345 93 s \$0-stopSeq-rcv;
+#X obj 371 79 s \$0-stopSeq-rcv;
 #X msg 384 244 ro;
 #X msg 356 243 rw;
 #X obj 175 439 route ro rw;
@@ -78,13 +78,13 @@
 #X obj 175 418 route rorw;
 #X obj 67 426 s CLIENT_MONITOR;
 #X obj 324 169 r CLIENT_REMOTE;
-#X obj 562 179 r \$0-skipSeq-snd;
-#X msg 562 202 seq skip;
-#X obj 370 370 print CLI;
-#X obj 301 417 text fromlist \$0-text;
+#X obj 575 179 r \$0-skipSeq-snd;
+#X msg 575 202 seq skip;
+#X obj 385 377 print CLI;
+#X obj 304 452 text fromlist \$0-text;
 #X msg 544 253 seq dump seq-conduite-dump;
-#X obj 565 382 text tolist \$0-text;
-#X obj 565 404 list prepend seq get;
+#X obj 534 324 text tolist \$0-text;
+#X obj 534 346 list prepend seq get;
 #X obj 560 55 route seq;
 #X obj 560 75 route nb;
 #X obj 560 97 change -1;
@@ -97,18 +97,45 @@
 #X obj 485 528 text define \$0-text;
 #X msg 485 504 click;
 #X obj 485 479 r \$0-editSeq-snd;
-#X obj 538 283 r \$0-saveSeq-snd;
-#X obj 538 305 t b b;
-#X obj 584 308 r CLIENT-seqnb;
-#X obj 538 329 f;
-#X msg 538 351 seq save \$1;
+#X obj 306 358 r \$0-saveSeq-snd;
+#X obj 498 414 r CLIENT-seqnb;
+#X obj 480 434 f;
+#X msg 480 456 seq save \$1;
 #N canvas 5 75 450 300 OLD/TEMP 0;
 #X obj 206 57 bng 70 250 50 0 \$0-allstop-snd \$0-allstop-rcv ALL_STOP
 5 30 0 14 -258113 -1 -1;
 #X restore 170 590 pd OLD/TEMP;
 #X obj 134 146 route fruitsOK;
 #X obj 69 30 PdClient CLIENT CLIENT raspberrypi.local;
-#X connect 1 0 59 0;
+#X obj 743 477 text get \$0-text;
+#X obj 743 343 text size \$0-text;
+#X floatatom 743 365 5 0 0 0 - - -, f 5;
+#X obj 743 386 t f b;
+#X obj 743 408 until;
+#X obj 743 430 i;
+#X obj 781 431 + 1;
+#X obj 743 453 t f f;
+#X obj 743 499 list prepend 0;
+#X msg 787 408 0;
+#X obj 700 514 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 743 317 t b b;
+#X obj 743 521 list prepend setl;
+#X msg 873 521 clear;
+#X obj 743 543 list prepend seq;
+#X obj 743 291 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 435 522 save;
+#X msg 306 386 send;
+#X obj 306 430 list prepend seq;
+#X obj 306 410 seq/textExchange \$0-text;
+#X obj 481 413 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 349 485 route setl;
+#X msg 349 549 click;
+#X obj 349 529 del 500;
+#X obj 349 507 b;
+#X connect 1 0 58 0;
 #X connect 2 0 12 0;
 #X connect 4 0 10 0;
 #X connect 5 0 4 0;
@@ -145,7 +172,6 @@
 #X connect 35 0 0 0;
 #X connect 38 0 0 0;
 #X connect 39 0 40 0;
-#X connect 40 0 0 0;
 #X connect 41 0 42 0;
 #X connect 42 0 43 0;
 #X connect 42 0 47 0;
@@ -155,16 +181,45 @@
 #X connect 48 0 32 0;
 #X connect 48 1 31 0;
 #X connect 48 2 37 0;
+#X connect 48 3 79 0;
+#X connect 48 3 81 0;
 #X connect 49 0 41 0;
 #X connect 51 0 50 0;
 #X connect 52 0 51 0;
-#X connect 53 0 54 0;
-#X connect 54 0 56 0;
-#X connect 54 1 39 0;
-#X connect 55 0 56 1;
-#X connect 56 0 57 0;
-#X connect 57 0 0 0;
-#X connect 59 0 2 0;
+#X connect 53 0 77 0;
+#X connect 54 0 55 1;
+#X connect 55 0 56 0;
+#X connect 56 0 0 0;
+#X connect 58 0 2 0;
+#X connect 60 0 68 0;
+#X connect 61 0 62 0;
+#X connect 62 0 63 0;
+#X connect 63 0 64 0;
+#X connect 63 1 69 0;
+#X connect 64 0 65 0;
+#X connect 65 0 66 0;
+#X connect 65 0 67 0;
+#X connect 66 0 65 1;
+#X connect 67 0 60 0;
+#X connect 67 1 68 1;
+#X connect 68 0 72 0;
+#X connect 69 0 65 1;
+#X connect 70 0 72 0;
+#X connect 71 0 61 0;
+#X connect 71 1 73 0;
+#X connect 72 0 74 0;
+#X connect 73 0 74 0;
+#X connect 75 0 71 0;
+#X connect 76 0 50 0;
+#X connect 77 0 79 0;
+#X connect 78 0 0 0;
+#X connect 79 0 78 0;
+#X connect 79 1 55 0;
+#X connect 80 0 55 0;
+#X connect 81 0 84 0;
+#X connect 82 0 50 0;
+#X connect 83 0 82 0;
+#X connect 84 0 83 0;
 #X restore 438 315 pd guts;
 #X obj 266 350 hradio 30 1 0 2 \$0-rorw-snd \$0-rorw-rcv readwrite________readonly
 -75 23 0 14 -262144 -1 -1 1;
