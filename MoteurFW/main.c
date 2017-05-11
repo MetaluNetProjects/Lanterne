@@ -47,14 +47,14 @@
 #define InitTimerUS(T) do{ TMR1H=TMR1initUS(T)/256 ; TMR1L=TMR1initUS(T)%256; PIR1bits.TMR1IF=0; }while(0)
 #define TimerOut() (PIR1bits.TMR1IF)
 
-DCMOTOR_DECLARE(C);
+DCMOTOR_DECLARE(D);
 
 long int TestVar,TestVar2;
 
 void highInterrupts()
 {
 	if(PIR1bits.TMR1IF) {
-		DCMOTOR_CAPTURE_SERVICE(C);
+		DCMOTOR_CAPTURE_SERVICE(D);
 		InitTimerUS(10);
 	}
 }
@@ -95,28 +95,28 @@ void setup(void)
 	PIE1bits.TMR1IE=1;  //1;
 	IPR1bits.TMR1IP=1;
 	
-	dcmotorInit(C);
+	dcmotorInit(D);
 #define HW_PARAMS	
 #ifdef HW_PARAMS
 	//DCMOTOR(C).Setting.PosWindow = 1;
-	DCMOTOR(C).Setting.PwmMin = 50;
-	//DCMOTOR(C).Setting.PosErrorGain = 6;
-	//DCMOTOR(C).Setting.onlyPositive = 0;
+	DCMOTOR(D).Setting.PwmMin = 50;
+	//DCMOTOR(D).Setting.PosErrorGain = 6;
+	//DCMOTOR(D).Setting.onlyPositive = 0;
 	
-	DCMOTOR(C).PosRamp.maxSpeed = 1800;
-	DCMOTOR(C).PosRamp.maxAccel = 1200;
-	DCMOTOR(C).PosRamp.maxDecel = 1200;
+	DCMOTOR(D).PosRamp.maxSpeed = 1800;
+	DCMOTOR(D).PosRamp.maxAccel = 1200;
+	DCMOTOR(D).PosRamp.maxDecel = 1200;
 	//rampSetPos(&DCMOTOR(C).PosRamp, 0);
 
-	DCMOTOR(C).PosPID.GainP = 150; //90
-	DCMOTOR(C).PosPID.GainI = 0;
-	DCMOTOR(C).PosPID.GainD = 0;
-	DCMOTOR(C).PosPID.MaxOut = 1023;
+	DCMOTOR(D).PosPID.GainP = 150; //90
+	DCMOTOR(D).PosPID.GainI = 0;
+	DCMOTOR(D).PosPID.GainD = 0;
+	DCMOTOR(D).PosPID.MaxOut = 1023;
 
 	//DCMOTOR(C).VolVars.homed = 0;
 #endif
 	analogInit();
-	analogSelect(0, MOTC_POT);
+	analogSelect(0, MOTD_POT);
 	
 	switchInit();
     //switchSelect(0,K7); 
@@ -145,17 +145,17 @@ void loop() {
 		pot0 = analogGet(0);
 		wdService();
 		/*if(!wdOK() || (pot0 < POT_PERCENT(5)) || (pot0 > POT_PERCENT(95))) {
-			DCMOTOR(C).Vars.PWMConsign = 0;
-			DCMOTOR(C).Setting.Mode = 0;
+			DCMOTOR(D).Vars.PWMConsign = 0;
+			DCMOTOR(D).Setting.Mode = 0;
 		}*/
 
-		DCMOTOR_COMPUTE(C, ASYM);
+		DCMOTOR_COMPUTE(D, ASYM);
 
 		fraiseService();
 		
 		if(!t--){
 			t=PERIOD;
-			printf("C MC %ld %ld %d %d\n",DCMOTOR_GETPOS(C),(long)(DCMOTOR(C).PosRamp.destPos>>RAMP_UINCPOW), DCMOTOR(C).Vars.PWMConsign,DCMOTOR(C).VolVars.homed);
+			printf("C MC %ld %ld %d %d\n",DCMOTOR_GETPOS(D),(long)(DCMOTOR(D).PosRamp.destPos>>RAMP_UINCPOW), DCMOTOR(D).Vars.PWMConsign,DCMOTOR(D).VolVars.homed);
 		}
 	}
 }
@@ -199,13 +199,13 @@ void fraiseReceive()
 		PARAM_CHAR(1,t2); break;
 		PARAM_CHAR(2,PERIOD); break;
 		//case 20 : Servo_Input(); break;
-		case 120 : DCMOTOR_INPUT(C); break;
+		case 120 : DCMOTOR_INPUT(D); break;
 		//case 121 : DCMOTOR_INPUT(D); break;
 	}
 }
 
 void EEdeclareMain()
 {
-	DCMOTOR_DECLARE_EE(C);
+	DCMOTOR_DECLARE_EE(D);
 	//DCMOTOR_DECLARE_EE(D);
 }
