@@ -48,6 +48,13 @@ Connect to the raspberryPi either through ethernet or to WIFI access point:
 - password: raspberry
 
 Open with Pd : 0client.pd  
+Play a sequence by clicking its number.  
+Edit the sequence (click EDIT button if sequence is not shown);  
+Save the sequence:
+
+- 1 Type Ctr-S
+- 2 Click "SAVE" button
+
 
 #### If the client doesn't connect to the machine:
   
@@ -56,6 +63,25 @@ In 0client.pd, open sub-patch named `pd guts`; locate the object:
 
 In edit mode, change `raspberrypi.local` to the IP address you can ping the machine host. Try `192.168.3.1` if WIFI connected, or `192.168.1.71` if ethernet. 
 Connection should be established almost instantly. Save the patch when working.
+
+
+## Sequence format:
+
+TIME(seconds from the beginning) COMMAND VALUE [TRANSITION_DURATION(seconds)]
+
+### COMMANDS:  
+LAMPE1/2/3/4/5/6 VALUE:0->100
+
+POS1/2/3 VALUE:-360->360
+
+### examples:
+
+10 LAMPE1 50 10 : 10 seconds after start, ask LAMPE1 to go to 50% in 10 seconds.
+
+20 LAMPE1 0 : 20 seconds after start, ask LAMPE1 to shut down instantly.
+
+30 POS1 360 20 : 30 seconds after start, ask motor 1 to got to +1 turn in 20 seconds.
+
 
 ## Credits
 
