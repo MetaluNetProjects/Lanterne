@@ -1,9 +1,9 @@
-#N canvas 51 185 718 583 10;
+#N canvas 600 145 718 583 10;
 #X declare -stdpath Fraise;
 #X declare -lib pof;
 #X obj 10 8 declare -stdpath Fraise;
 #X obj 10 31 pied/pied 0 12346;
-#X obj 252 221 loadbang;
+#X obj 209 264 loadbang;
 #N canvas 0 228 562 296 SET_ZEROS 0;
 #X obj 57 15 r MOT1-status-ok;
 #X obj 70 36 r MOT2-status-ok;
@@ -50,8 +50,8 @@
 #X connect 18 1 17 0;
 #X connect 19 0 16 0;
 #X connect 20 0 7 0;
-#X restore 280 257 pd SET_ZEROS;
-#N canvas 440 96 837 566 NETWORK/SEQUENCE 1;
+#X restore 280 294 pd SET_ZEROS;
+#N canvas 441 93 837 566 NETWORK/SEQUENCE 0;
 #X obj 147 260 s reSend;
 #X obj 121 96 f;
 #X obj 150 96 r reSend;
@@ -219,13 +219,13 @@
 #X connect 45 0 1 0;
 #X connect 46 0 8 0;
 #X connect 47 0 26 0;
-#X restore 164 428 pd NETWORK/SEQUENCE;
-#X obj 164 368 seq/main conduite;
-#X msg 164 344 load \$1;
-#X obj 258 257 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 164 465 pd NETWORK/SEQUENCE;
+#X obj 164 405 seq/main conduite;
+#X msg 164 381 load \$1;
+#X obj 258 294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 209 263 0;
-#X msg 310 282 1;
+#X msg 209 300 0;
+#X msg 310 319 1;
 #N canvas 185 160 625 480 pof_start 0;
 #X obj 458 15 declare -lib pof;
 #X obj 458 38 poffonts impact Impact.ttf;
@@ -234,7 +234,7 @@
 #X obj 456 79 == 1;
 #X obj 301 75 t f f;
 #X obj 456 101 t f f;
-#X obj 456 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 456 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 547 241 line;
 #X obj 536 122 sel 0;
@@ -310,22 +310,22 @@
 #X connect 35 0 13 0;
 #X connect 36 0 35 0;
 #X connect 37 0 8 0;
-#X restore 310 311 pd pof_start;
-#X obj 370 205 r seq-conduite-snd;
-#X obj 370 227 route END stop nb;
-#X msg 372 275 2;
-#X obj 356 183 r seq-conduite-line;
-#X msg 164 322 1;
+#X restore 310 348 pd pof_start;
+#X obj 366 212 r seq-conduite-snd;
+#X obj 366 234 route END stop nb;
+#X msg 372 312 2;
+#X obj 352 190 r seq-conduite-line;
+#X msg 164 359 1;
 #X obj 468 79 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 465 121 s CONTROL;
-#X obj 9 232 LAMPE 1 1 51;
+#X obj 9 275 LAMPE 1 1 51;
 #X msg 465 99 LAMPE1 \$1 0.1;
-#X obj 9 267 LAMPE 2 1 52;
-#X obj 9 302 LAMPE 3 1 53;
-#X obj 9 337 LAMPE 4 2 51;
-#X obj 9 372 LAMPE 5 2 52;
-#X obj 9 407 LAMPE 6 2 53;
+#X obj 9 310 LAMPE 2 1 52;
+#X obj 9 345 LAMPE 3 1 53;
+#X obj 9 380 LAMPE 4 2 51;
+#X obj 9 415 LAMPE 5 2 52;
+#X obj 9 450 LAMPE 6 2 53;
 #X obj 168 4 fruit/fruit 1 Lampe1 10 LampesFW;
 #X obj 168 53 fruit/fruit 1 Lampe2 11 LampesFW;
 #X obj 462 11 loadbang;
@@ -349,9 +349,9 @@
 #X msg 559 501 LAMPE\$1 \$2;
 #X obj 472 271 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 9 108 MOTEUR 1;
 #X obj 227 108 MOTEUR 3;
 #X obj 119 108 MOTEUR 2;
+#X obj 8 109 MOTEUR 1;
 #X connect 2 0 8 0;
 #X connect 2 0 3 0;
 #X connect 3 0 9 0;
