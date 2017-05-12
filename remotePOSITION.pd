@@ -1,16 +1,27 @@
-#N canvas 18 75 396 265 10;
+#N canvas 9 132 372 278 10;
 #X obj 35 100 r CLIENT_MONITOR;
 #X obj 35 144 s \$0-current-rcv;
-#X obj 163 143 s CLIENT_REMOTE;
-#X obj 163 99 r \$0-remote-snd;
-#X obj 56 26 nbx 8 14 -360 360 0 0 \$0-remote-snd \$0-remote-rcv set
--20 7 0 10 -4034 -1 -1 18 256;
-#X obj 56 41 nbx 8 10 -360 360 0 0 \$0-current-snd \$0-current-rcv
-current -45 5 0 10 -204786 -1 -1 18 256;
-#X obj 35 122 route POS\$1;
-#X obj 163 121 list prepend POS\$1;
-#X connect 0 0 6 0;
-#X connect 3 0 7 0;
-#X connect 6 0 1 0;
-#X connect 7 0 2 0;
-#X coords 0 -1 1 1 135 42 1 10 10;
+#X obj 192 146 s CLIENT_REMOTE;
+#X obj 62 26 nbx 8 14 -360 360 0 0 \$0-remote-snd \$0-remote-rcv set
+-20 7 0 10 -4034 -1 -1 0 256;
+#X obj 62 41 nbx 8 10 -360 360 0 0 \$0-current-snd \$0-current-rcv
+current -45 5 0 10 -204786 -1 -1 183 256;
+#X obj 192 124 list prepend POS\$1;
+#X obj 62 57 nbx 8 14 10 100 0 0 \$0-accel-snd \$0-accel-rcv accel(%)
+-49 7 0 10 -260097 -1 -1 20 256;
+#X obj 193 176 r \$0-accel-snd;
+#X obj 192 102 r \$0-remote-snd;
+#X obj 193 221 s CLIENT_REMOTE;
+#X obj 193 199 list prepend ACCEL\$1;
+#X obj 35 122 route POS\$1 ACCEL\$1;
+#X msg 75 175 set \$1;
+#X obj 75 198 s \$0-accel-rcv;
+#X connect 0 0 11 0;
+#X connect 5 0 2 0;
+#X connect 7 0 10 0;
+#X connect 8 0 5 0;
+#X connect 10 0 9 0;
+#X connect 11 0 1 0;
+#X connect 11 1 12 0;
+#X connect 12 0 13 0;
+#X coords 0 -1 1 1 132 63 1 10 10;

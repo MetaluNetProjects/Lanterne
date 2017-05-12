@@ -74,7 +74,11 @@ LAMPE1/2/3/4/5/6 VALUE:0->100
 
 POS1/2/3 VALUE:-360->360
 
+ACCEL1/2/3:10->100(%) ; no transition time ; take effect only when motor is stopped.
+ 
 ### examples:
+
+0 ACCEL1 15 : at start-up, initialize motor 1 acceleration to 15%.
 
 10 LAMPE1 50 10 : 10 seconds after start, ask LAMPE1 to go to 50% in 10 seconds.
 
