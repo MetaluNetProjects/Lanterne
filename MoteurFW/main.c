@@ -64,6 +64,8 @@ t_delay mainDelay;
 unsigned char PERIOD=25;
 unsigned char t=25,t2;
 
+char disablePotSecurity = 0;
+
 // --------- Fraise Watchdog : ----------------//
 unsigned int wdC = 0; //watchdog count
 
@@ -144,9 +146,11 @@ void loop() {
 		if(!switchSend()) analogSend();
 		pot0 = analogGet(0);
 		wdService();
-		if(!wdOK() || (pot0 < POT_PERCENT(4)) || (pot0 > POT_PERCENT(96))) {
-			DCMOTOR(D).Vars.PWMConsign = 0;
-			DCMOTOR(D).Setting.Mode = 0;
+		if(!disablePotSecurity) {
+			if(!wdOK() || (pot0 < POT_PERCENT(4)) || (pot0 > POT_PERCENT(96))) {
+				DCMOTOR(D).Vars.PWMConsign = 0;
+				DCMOTOR(D).Setting.Mode = 0;
+			}
 		}
 
 		DCMOTOR_COMPUTE(D, ASYM);
@@ -185,6 +189,13 @@ void fraiseReceiveChar()
 		&& (fraiseGetChar() == 'V')
 		&& (fraiseGetChar() == 'E'))
 			EEwriteMain();
+	}	
+	else if(c=='F') { //force motor
+		if((fraiseGetChar() == 'O')
+		&& (fraiseGetChar() == 'R')
+		&& (fraiseGetChar() == 'C')
+		&& (fraiseGetChar() == 'E'))
+		disablePotSecurity = (fraiseGetChar()!='0');
 	}	
 }
 
