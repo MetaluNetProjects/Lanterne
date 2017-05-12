@@ -16,8 +16,8 @@
 
 #define MOTD_END KZ1
 #define MOTD_ENDLEVEL 0
-#define MOTD_A K1
-#define MOTD_B K2
+#define MOTD_A K2
+#define MOTD_B K1
 #define MOTD_POT K3
 
 #define ANALOG_FILTER 5

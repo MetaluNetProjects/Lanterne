@@ -109,7 +109,7 @@ void setup(void)
 	//rampSetPos(&DCMOTOR(C).PosRamp, 0);
 
 	DCMOTOR(D).PosPID.GainP = 150; //90
-	DCMOTOR(D).PosPID.GainI = 0;
+	DCMOTOR(D).PosPID.GainI = 2;
 	DCMOTOR(D).PosPID.GainD = 0;
 	DCMOTOR(D).PosPID.MaxOut = 1023;
 
@@ -128,7 +128,7 @@ void setup(void)
 
 // ---------- Main loop ------------
 int pot0;
-#define POT_PERCENT(x)  ((int)((x*16384UL)/100))
+#define POT_PERCENT(x)  ((int)((x*32768UL)/100))
 
 void loop() {
 	fraiseService();
@@ -144,10 +144,10 @@ void loop() {
 		if(!switchSend()) analogSend();
 		pot0 = analogGet(0);
 		wdService();
-		/*if(!wdOK() || (pot0 < POT_PERCENT(5)) || (pot0 > POT_PERCENT(95))) {
+		if(!wdOK() || (pot0 < POT_PERCENT(4)) || (pot0 > POT_PERCENT(96))) {
 			DCMOTOR(D).Vars.PWMConsign = 0;
 			DCMOTOR(D).Setting.Mode = 0;
-		}*/
+		}
 
 		DCMOTOR_COMPUTE(D, ASYM);
 
