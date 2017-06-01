@@ -1,4 +1,4 @@
-#N canvas 600 145 718 583 10;
+#N canvas 605 130 718 583 10;
 #X declare -stdpath Fraise;
 #X declare -lib pof;
 #X obj 10 8 declare -stdpath Fraise;
@@ -51,7 +51,7 @@
 #X connect 19 0 16 0;
 #X connect 20 0 7 0;
 #X restore 280 294 pd SET_ZEROS;
-#N canvas 441 93 837 566 NETWORK/SEQUENCE 0;
+#N canvas 442 90 837 566 NETWORK/SEQUENCE 0;
 #X obj 147 260 s reSend;
 #X obj 121 96 f;
 #X obj 150 96 r reSend;
@@ -71,7 +71,7 @@
 #X msg 169 144 1;
 #X obj 130 169 change;
 #X obj 130 194 tgl 15 0 \$0-CONNECTED empty CONNECTED 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 109 218 outlet;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
@@ -83,7 +83,7 @@
 #X connect 6 0 7 0;
 #X connect 6 0 8 0;
 #X restore 79 525 pd test_connected;
-#X obj 79 546 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 79 546 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 120 169 r NET-nbclients;
 #X obj 120 194 sel 0;
@@ -172,7 +172,7 @@
 #X restore 121 56 pd fruits_present;
 #X obj 231 303 change;
 #X obj 231 325 sel 1 0;
-#X obj 121 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 121 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 121 116 list prepend CLIENT fruitsOK;
 #X obj 648 278 list prepend seq;
@@ -226,7 +226,7 @@
 -1 -1;
 #X msg 209 300 0;
 #X msg 310 319 1;
-#N canvas 185 160 625 480 pof_start 0;
+#N canvas 186 151 776 539 pof_start 0;
 #X obj 458 15 declare -lib pof;
 #X obj 458 38 poffonts impact Impact.ttf;
 #X obj 119 306 poftexts impact 36;
@@ -234,7 +234,7 @@
 #X obj 456 79 == 1;
 #X obj 301 75 t f f;
 #X obj 456 101 t f f;
-#X obj 456 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 456 143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 547 241 line;
 #X obj 536 122 sel 0;
@@ -257,31 +257,33 @@
 #X obj 119 334 poftouch 700 350;
 #X obj 341 432 print touch;
 #X obj 482 381 unpack f f f;
-#X obj 456 405 pofcolor 0 0 0 1;
 #X obj 455 427 pofimage limen.jpg;
-#X obj 119 163 t a a;
 #X msg 547 307 \$1 \$1 \$1;
 #X msg 272 246 size 256 \, text;
 #X msg 326 155 0 0 0;
 #X msg 449 275 size 191 \, text;
-#X obj 119 135 pofhead;
 #X obj 457 187 + 0.15;
 #X obj 456 165 * 0.85;
 #X msg 536 149 0.01 1000;
+#X obj 119 135 pofhead;
+#X obj 456 405 pofcolor 0 0 0 1;
+#X obj 612 432 pofrect 3000 3000;
+#X obj 612 411 pofcolor 0 0 0 1;
+#X obj 119 163 t a a a;
 #X connect 2 0 24 0;
-#X connect 3 0 32 0;
+#X connect 3 0 30 0;
 #X connect 3 0 23 0;
-#X connect 3 1 31 0;
-#X connect 3 2 33 0;
+#X connect 3 1 29 0;
+#X connect 3 2 31 0;
 #X connect 4 0 6 0;
 #X connect 4 0 15 1;
 #X connect 5 0 3 0;
 #X connect 5 1 4 0;
 #X connect 6 0 12 0;
 #X connect 6 1 9 0;
-#X connect 7 0 36 0;
-#X connect 8 0 30 0;
-#X connect 9 0 37 0;
+#X connect 7 0 33 0;
+#X connect 8 0 28 0;
+#X connect 9 0 34 0;
 #X connect 9 0 10 0;
 #X connect 10 0 7 0;
 #X connect 11 0 5 0;
@@ -296,20 +298,22 @@
 #X connect 22 0 19 0;
 #X connect 23 0 2 0;
 #X connect 24 1 14 0;
-#X connect 26 0 27 1;
-#X connect 26 1 27 2;
-#X connect 26 2 27 3;
-#X connect 27 0 28 0;
+#X connect 26 0 36 1;
+#X connect 26 1 36 2;
+#X connect 26 2 36 3;
+#X connect 28 0 26 0;
 #X connect 29 0 2 0;
-#X connect 29 1 27 0;
 #X connect 30 0 26 0;
 #X connect 31 0 2 0;
-#X connect 32 0 26 0;
-#X connect 33 0 2 0;
-#X connect 34 0 29 0;
-#X connect 35 0 13 0;
-#X connect 36 0 35 0;
-#X connect 37 0 8 0;
+#X connect 32 0 13 0;
+#X connect 33 0 32 0;
+#X connect 34 0 8 0;
+#X connect 35 0 39 0;
+#X connect 36 0 27 0;
+#X connect 38 0 37 0;
+#X connect 39 0 2 0;
+#X connect 39 1 36 0;
+#X connect 39 2 38 0;
 #X restore 310 348 pd pof_start;
 #X obj 366 212 r seq-conduite-snd;
 #X obj 366 234 route END stop nb;
@@ -352,8 +356,9 @@
 #X obj 227 108 MOTEUR 3;
 #X obj 119 108 MOTEUR 2;
 #X obj 8 109 MOTEUR 1;
-#X connect 2 0 8 0;
+#X msg 533 33 \; pd dsp 0;
 #X connect 2 0 3 0;
+#X connect 2 0 8 0;
 #X connect 3 0 9 0;
 #X connect 6 0 5 0;
 #X connect 7 0 3 0;
@@ -369,7 +374,6 @@
 #X connect 15 0 6 0;
 #X connect 16 0 19 0;
 #X connect 19 0 17 0;
-#X connect 27 0 28 0;
 #X connect 29 0 31 0;
 #X connect 31 0 30 0;
 #X connect 32 0 33 0;
