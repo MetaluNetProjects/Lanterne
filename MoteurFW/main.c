@@ -105,9 +105,9 @@ void setup(void)
 	//DCMOTOR(D).Setting.PosErrorGain = 6;
 	//DCMOTOR(D).Setting.onlyPositive = 0;
 	
-	DCMOTOR(D).PosRamp.maxSpeed = 900;
-	DCMOTOR(D).PosRamp.maxAccel = 1200;
-	DCMOTOR(D).PosRamp.maxDecel = 1200;
+	DCMOTOR(D).PosRamp.maxSpeed = 1800;
+	DCMOTOR(D).PosRamp.maxAccel = 2400;
+	DCMOTOR(D).PosRamp.maxDecel = 2400;
 	//rampSetPos(&DCMOTOR(C).PosRamp, 0);
 
 	DCMOTOR(D).PosPID.GainP = 150; //90
