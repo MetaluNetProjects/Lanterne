@@ -100,7 +100,7 @@ void setup(void)
 	dcmotorInit(D);
 #define HW_PARAMS	
 #ifdef HW_PARAMS
-	//DCMOTOR(C).Setting.PosWindow = 1;
+	DCMOTOR(D).Setting.PosWindow = 6;
 	DCMOTOR(D).Setting.PwmMin = 50;
 	//DCMOTOR(D).Setting.PosErrorGain = 6;
 	//DCMOTOR(D).Setting.onlyPositive = 0;
@@ -110,8 +110,8 @@ void setup(void)
 	DCMOTOR(D).PosRamp.maxDecel = 2400;
 	//rampSetPos(&DCMOTOR(C).PosRamp, 0);
 
-	DCMOTOR(D).PosPID.GainP = 150; //90
-	DCMOTOR(D).PosPID.GainI = 2;
+	DCMOTOR(D).PosPID.GainP = 40;
+	DCMOTOR(D).PosPID.GainI = 1;
 	DCMOTOR(D).PosPID.GainD = 0;
 	DCMOTOR(D).PosPID.MaxOut = 1023;
 
